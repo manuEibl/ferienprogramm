@@ -6,7 +6,6 @@ import React from 'react';
 import styles from './Navbar.module.css';
 
 export function Navbar() {
-  const pathname = usePathname();
 
   return (
     <nav className={styles.navigation}>

@@ -34,7 +34,7 @@ export default function Home() {
                 <br/>Ab dem 27. Juni 2025 könnt Ihr die Programmliste durchstöbern. Auch die Registrierung ist ab diesem Zeitpunkt möglich. Folgt einfach den Anweisungen auf der rechten Seite.
               </p>
               <p>
-                <br/>Wie üblich ist den "Mach mit"-Mitgliedern und Programmpunkt-Anbieter:innen die Anmeldung am Freitag, den 04.07.25 von 14.00 bis 18.00 Uhr vorbehalten. Ab Samstag, den 05. Juli von 10.00 Uhr bis 06. Juli 18.00 Uhr ist die Anmeldung für alle geöffnet.
+                <br/>Wie üblich ist den &quot;Mach mit&quot;-Mitgliedern und Programmpunkt-Anbieter:innen die Anmeldung am Freitag, den 04.07.25 von 14.00 bis 18.00 Uhr vorbehalten. Ab Samstag, den 05. Juli von 10.00 Uhr bis 06. Juli 18.00 Uhr ist die Anmeldung für alle geöffnet.
               </p>
               <p className="text-lime-500 font-bold">
                  <br/><br/>---------------------------------------
@@ -49,7 +49,7 @@ export default function Home() {
                 <br/>Herzlich danken wir auch der Gemeinde Geltendorf für die Unterstützung.
               </p>
               <p>
-                <br/>Der "Mach mit"-Vorstand und der Arbeitskreis Ferienprogramm wünschen Euch schöne und abwechslungsreiche Ferien!
+                <br/>Der &quot;Mach mit&quot;-Vorstand und der Arbeitskreis Ferienprogramm wünschen Euch schöne und abwechslungsreiche Ferien!
               </p>
               <p>
                 <br/>www.machmit-geltendorf.de
