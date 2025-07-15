@@ -1,16 +1,60 @@
 import Image from "next/image";
+import { Navbar } from "./components/Navbar";
+import styles from './page.module.css';
+
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-                    aria-hidden
-                    src="/landing_page/geltendorf_logo.png"
-                    alt="Logo Geltendorfer Ferienprogramm"
-                    width={500}
-                    height={500}
-                  />
+    <div className={styles['container-fluid']}>
+      <main className={styles['main']}>
+          <Image
+            aria-hidden
+            src="/landing_page/geltendorf_logo.png"
+            alt="Logo Geltendorfer Ferienprogramm"
+            width={600}
+            height={600}
+          />
+
+          <Navbar />
+
+           <div className={styles['text'] }>
+              <p className="text-lime-500 font-bold">
+                <br/>Es ist geschafft: das 27. Geltendorfer Ferienprogramm ist da!
+              </p>
+              <p>
+                <br/>27 Jahre Ferienprogramm, 27 Jahre actionreiche, spannende Sommerferien!
+              </p>
+              <p>
+                <br/>Auch dieses Jahr freuen wir uns auf unsere Highlights:
+              </p>
+              <p className="text-sky-400 font-bold">
+                <br/>Das große Lagerfeuer und den Hüttenbau
+              </p>
+              <p>
+                <br/>Ab dem 27. Juni 2025 könnt Ihr die Programmliste durchstöbern. Auch die Registrierung ist ab diesem Zeitpunkt möglich. Folgt einfach den Anweisungen auf der rechten Seite.
+              </p>
+              <p>
+                <br/>Wie üblich ist den "Mach mit"-Mitgliedern und Programmpunkt-Anbieter:innen die Anmeldung am Freitag, den 04.07.25 von 14.00 bis 18.00 Uhr vorbehalten. Ab Samstag, den 05. Juli von 10.00 Uhr bis 06. Juli 18.00 Uhr ist die Anmeldung für alle geöffnet.
+              </p>
+              <p className="text-lime-500 font-bold">
+                 <br/><br/>---------------------------------------
+              </p>
+              <p className="text-sky-400 font-bold">
+                <br/><br/>Bitte beachtet unsere 2025 angepassten Veranstaltungshinweise mit den neuen Rückerstattungsmodalitäten!
+              </p>
+              <p>
+                <br/>Besonderer Dank gilt allen ehrenamtlichen Helfer*innen, die es ermöglichen, das 27. Geltendorfer Ferienprogramm in dieser Vielfalt anbieten zu können.
+              </p>
+              <p className="text-lime-500 font-bold">
+                <br/>Herzlich danken wir auch der Gemeinde Geltendorf für die Unterstützung.
+              </p>
+              <p>
+                <br/>Der "Mach mit"-Vorstand und der Arbeitskreis Ferienprogramm wünschen Euch schöne und abwechslungsreiche Ferien!
+              </p>
+              <p>
+                <br/>www.machmit-geltendorf.de
+              </p>
+            </div>
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a
