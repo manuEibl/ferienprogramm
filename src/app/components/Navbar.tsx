@@ -1,37 +1,11 @@
 'use client';
 
 import React from 'react';
-import {Box, IconButton, Menu, MenuItem, useMediaQuery} from "@mui/material";
+import {IconButton, Link, Menu, MenuItem, useMediaQuery} from "@mui/material";
 import {Tab, Tabs} from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-import Kalender from "@/pages/kalender";
-import Programmliste from "@/pages/programmliste";
-import StartPage from "@/pages/start";
-import Anmeldung from "@/pages/anmeldung";
 import { useTheme } from '@mui/material/styles';
 import styles from "@/app/page.module.css";
-
-interface TabPanelProps {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
-}
-
-function CustomTabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
-            {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-        </div>
-    );
-}
 
 function a11yProps(index: number) {
     return {
@@ -50,11 +24,11 @@ export function Navbar() {
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
     const tabs = [
-        { label: "Start", component: <StartPage /> },
-        { label: "Anmeldung", component: <Anmeldung /> },
-        { label: "Programmliste", component: <Programmliste /> },
-        { label: "Kalender", component: <Kalender /> },
-        { label: "Login", component: <>Login</> }
+        { label: "Start", href: "/" },
+        { label: "Anmeldung", href: "/anmeldung" },
+        { label: "Programmliste", href: "/programmliste" },
+        { label: "Kalender", href: "/kalender" },
+        { label: "Login", href: "/login" },
     ];
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -97,6 +71,8 @@ export function Navbar() {
                                 <MenuItem
                                     key={tab.label}
                                     selected={i === value}
+                                    href={tab.href}
+                                    component={Link}
                                     onClick={() => handleMenuClose(i)}
                                 >
                                     {tab.label}
@@ -107,17 +83,13 @@ export function Navbar() {
                 ) : (
                     <Tabs value={value} onChange={handleChange} aria-label="navigation tabs">
                         {tabs.map((tab, index) => (
-                            <Tab key={tab.label} label={tab.label} {...a11yProps(index)} />
+                            <Tab key={tab.label} label={tab.label} href={tab.href} component={Link}
+                                 {...a11yProps(index)} />
                         ))}
                     </Tabs>
                 )}
             </div>
 
-            {tabs.map((tab, index) => (
-                <CustomTabPanel key={tab.label} value={value} index={index}>
-                    {tab.component}
-                </CustomTabPanel>
-            ))}
         </>
     );
 }

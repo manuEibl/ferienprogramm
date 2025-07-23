@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Anmeldung() {
+export default function AnmeldungPage() {
     return (
         <div>
 
