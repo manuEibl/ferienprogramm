@@ -1,13 +1,42 @@
-.navigation {
+.navigation div {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  background: #f6f6f6;
-  color: #212529;
-  padding-top: 0.25rem !important;
-  padding-bottom: 0.25rem !important;
-  margin-left: 1.5rem !important;
-  margin-right: 1.5rem !important;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
-  position: relative;
+  padding: 10px 0;
+  font-family: Arial, sans-serif;
+  height: auto;
+  overflow: auto;
+}
+
+.navigation div a {
+  padding: 8px;
+  margin: 5px;
+}
+
+.navigation div:hover {
+  background-color: #1565c0;
+  box-shadow: 0 4px 20px rgba(21, 101, 192, 0.5);
+  transform: scale(1.05);
+  text-decoration: underline;
+}
+
+.button {
+  background-color: #1976d2; /* Beispiel Blau */
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .navigation div {
+    flex-direction: column;
+    align-items: center;
+  }
+  .navigation li {
+    margin: 600px 0;
+  }
 }

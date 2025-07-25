@@ -1,95 +1,81 @@
-'use client';
+'use client'
 
-import React from 'react';
-import {IconButton, Link, Menu, MenuItem, useMediaQuery} from "@mui/material";
-import {Tab, Tabs} from "@mui/material";
+import React, { useState } from 'react';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useTheme } from '@mui/material/styles';
-import styles from "@/app/page.module.css";
-
-function a11yProps(index: number) {
-    return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
-    };
-}
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+import Link from 'next/link';
 
 export function Navbar() {
+    const [drawerOpen, setDrawerOpen] = useState(false);
 
-    const [value, setValue] = React.useState(0);
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
-    const theme = useTheme();
-    // Breakpoint sm (600px) - anpassen falls gewünscht
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-
-    const tabs = [
-        { label: "Start", href: "/" },
-        { label: "Anmeldung", href: "/anmeldung" },
-        { label: "Programmliste", href: "/programmliste" },
-        { label: "Kalender", href: "/kalender" },
-        { label: "Login", href: "/login" },
+    const menuItems = [
+        { text: 'START', href: '/' },
+        { text: 'ANMELDUNG', href: '/anmeldung' },
+        { text: 'PROGRAMMLISTE', href: '/programmliste' },
+        { text: 'KALENDER', href: '/kalender' },
+        { text: 'KONTAKT', href: '/kontakt' },
     ];
-
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        setValue(newValue);
-    };
-
-    const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleMenuClose = (index?: number) => {
-        if(index !== undefined) setValue(index);
-        setAnchorEl(null);
-    };
 
     return (
         <>
-            <div className={styles['navigation']}>
-
-                {isMobile ? (
-                    <>
-                        <IconButton
-                            aria-label="navigation menu"
-                            aria-controls="burger-menu"
-                            aria-haspopup="true"
-                            onClick={handleMenuOpen}
-                            size="large"
+            <AppBar position="static" style={{ backgroundColor: 'grey' }}>
+                <Toolbar>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        sx={{ mr: 2, display: { xs: 'flex', md: 'none' } }}
+                        onClick={() => setDrawerOpen(true)}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        Geltendorfer Ferienprogramm
+                    </Typography>
+                    {menuItems.map(item => (
+                        <Button
+                            key={item.text}
+                            href={item.href}
+                            variant="contained"
+                            color="inherit"
+                            sx={{ display: { xs: 'none', md: 'inline-flex' }, ml: 1, color: 'black' }}
                         >
-                            <MenuIcon />
-                        </IconButton>
+                            {item.text}
+                        </Button>
+                    ))}
+                </Toolbar>
+            </AppBar>
 
-                        <Menu
-                            id="burger-menu"
-                            anchorEl={anchorEl}
-                            open={Boolean(anchorEl)}
-                            onClose={() => handleMenuClose()}
-                            keepMounted
-                        >
-                            {tabs.map((tab, i) => (
-                                <MenuItem
-                                    key={tab.label}
-                                    selected={i === value}
-                                    href={tab.href}
-                                    component={Link}
-                                    onClick={() => handleMenuClose(i)}
-                                >
-                                    {tab.label}
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </>
-                ) : (
-                    <Tabs value={value} onChange={handleChange} aria-label="navigation tabs">
-                        {tabs.map((tab, index) => (
-                            <Tab key={tab.label} label={tab.label} href={tab.href} component={Link}
-                                 {...a11yProps(index)} />
-                        ))}
-                    </Tabs>
-                )}
-            </div>
-
+            {/* Drawer für mobile Navigation */}
+            <Drawer
+                anchor="left"
+                open={drawerOpen}
+                onClose={() => setDrawerOpen(false)}
+            >
+                <List sx={{ width: 220 }}>
+                    {menuItems.map((item) => (
+                        <ListItem key={item.text} disablePadding>
+                            <ListItemButton
+                                component={Link}
+                                href={item.href}
+                                onClick={() => setDrawerOpen(false)}
+                            >
+                                <ListItemText primary={item.text} />
+                            </ListItemButton>
+                        </ListItem>
+                    ))}
+                </List>
+            </Drawer>
         </>
     );
 }

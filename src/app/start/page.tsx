@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function StartPage() {
     return (
-        <div>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
             <Image
                 aria-hidden
                 src="/landing_page/geltendorf_logo.png"
