@@ -23,7 +23,7 @@ export default function StartPage() {
                     Es ist geschafft:<br /> Das 27. Geltendorfer Ferienprogramm ist da!
                 </Typography>
 
-                <Typography variant="h5" mb={1.5} color="text.secondary">
+                <Typography variant="h5" mb={1.5} >
                     27 Jahre Ferienprogramm, 27 Jahre actionreiche, spannende Sommerferien!
                 </Typography>
 
@@ -88,7 +88,7 @@ export default function StartPage() {
                     Herzlich danken wir auch der Gemeinde Geltendorf für die Unterstützung.
                 </Typography>
 
-                <Typography variant="body1" color="text.secondary" mb={3}>
+                <Typography variant="body1" mb={3}>
                     Der „Mach mit“-Vorstand und der Arbeitskreis Ferienprogramm wünschen Euch schöne und abwechslungsreiche Ferien!
                 </Typography>
 
