@@ -46,7 +46,7 @@ export default function KontaktPage() {
                 <Typography variant="h6">Nutzungsbedingungen & Urheberrecht</Typography>
                 <Typography>
                     Texte, Bilder, Grafiken sowie die Gestaltung dieser Internetseiten unterliegen dem Urheberrecht. Sie dürfen im Rahmen des § 53 UrhG nur zum privaten oder eigenen Gebrauch genutzt werden. Die Vervielfältigung, Verwendung oder Veröffentlichung – auch auszugsweise – ist nur mit vorheriger Zustimmung gestattet.<br /><br />
-                    <br /><br />
+                    <br />
                     Weitere Urheberrechtshinweise und Nutzungsbedingungen findest du auf der offiziellen Website.
                 </Typography>
 
