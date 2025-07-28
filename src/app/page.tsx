@@ -6,7 +6,7 @@ export default function Home() {
   return (
       <div>
           <main className={styles['main']}>
-              <Container maxWidth="md" style={{ backgroundColor: "white", padding: 24 }}>
+              <Container style={{ backgroundColor: "white"}}>
                 <StartPage/>
               </Container>
           </main>

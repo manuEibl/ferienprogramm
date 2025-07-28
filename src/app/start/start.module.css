@@ -1,0 +1,22 @@
+.centered_box {
+    min-height: 85vh;
+    justify-content: center;
+    align-items: center;
+    background-color: #f1f7ff;
+    display: flex;
+}
+
+.custom_paper {
+    max-width: 65vh;
+    min-width: 100vw;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 150px;
+    padding-right: 150px;
+    border-radius: 4px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+}

@@ -22,7 +22,7 @@ export function Navbar() {
         { text: 'ANMELDUNG', href: '/anmeldung' },
         { text: 'PROGRAMMLISTE', href: '/programmliste' },
         { text: 'KALENDER', href: '/kalender' },
-        { text: 'KONTAKT', href: '/kontakt' },
+        { text: 'IMPRESSUM', href: '/impressum' },
     ];
 
     return (
