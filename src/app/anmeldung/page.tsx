@@ -85,9 +85,6 @@ export default function AnmeldungPage() {
             ? [...form.programs, id]
             : form.programs.filter(item => item !== id);
 
-        console.log(id);
-        console.log(newPrograms);
-
         setForm(prev => ({
             ...prev,
             programs: newPrograms,
