@@ -3,54 +3,100 @@ import {
     Box, Button, TextField, Checkbox, FormControlLabel, Typography, Alert,
     FormGroup, FormLabel,
 } from "@mui/material";
-import { useState } from "react";
+import {useEffect, useState } from "react";
+import { supabase } from "../../../lib/supabaseClient";
 
 export default function AnmeldungPage() {
-
-    const programme = [
-        { value: 'kreativ', label: 'Kreativ-Workshop (Mo, 10–12 Uhr)' },
-        { value: 'fussball', label: 'Fußballcamp (Di, 14–17 Uhr)' },
-        { value: 'schwimmen', label: 'Schwimmkurs (Mi, 9–11 Uhr)' },
-    ];
-
+    const [programs, setPrograms] = useState<Program[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [submitted, setSubmitted] = useState(false);
     const [form, setForm] = useState({
         buchender: '',
         email: '',
         kinder: '',
-        programme: [] as string[],
+        programs: [] as number[],
         bemerkung: '',
-        einverstanden: false,
+        checked: false,
     });
-    const [submitted, setSubmitted] = useState(false);
 
-    const handleChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        const { name, value, type } = e.target;
+    interface Program {
+        id: number;
+        titel: string;
+        beschreibung?: string | null;
+        datum: string;
+        startzeit?: string | null;
+        endzeit?: string | null;
+        ort?: string | null;
+        plaetze?: number | null;
+    }
 
-        // FIXME
-        setForm(prev => ({
-            ...prev,
-            [name]: type === 'checkbox' ? null : value,
+    useEffect(() => {
+        async function fetchPrograms() {
+            const { data, error } = await supabase.from('programmtermine').select('*');
+            if (error) {
+                console.error(error);
+            } else if (data) {
+                setPrograms(data);
+            }
+            setLoading(false);
+        }
+        fetchPrograms();
+    }, []);
+
+    if (loading) return <p>Lade Programme...</p>;
+
+    const handleChangeBuchender= (event: React.ChangeEvent<HTMLInputElement>) => {
+        setForm(prevForm => ({
+            ...prevForm,
+            buchender: event.target.value,
         }));
     };
 
-    // Für Mehrfachauswahl Programme
-    const handleProgrammeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { value, checked } = e.target;
+    const handleChangeEmail= (event: React.ChangeEvent<HTMLInputElement>) => {
+        setForm(prevForm => ({
+            ...prevForm,
+            email: event.target.value,
+        }));
+    };
+
+    const handleChangeKind= (event: React.ChangeEvent<HTMLInputElement>) => {
+        setForm(prevForm => ({
+            ...prevForm,
+            kinder: event.target.value,
+        }));
+    };
+
+    const handleChangeBemerkung= (event: React.ChangeEvent<HTMLInputElement>) => {
+        setForm(prevForm => ({
+            ...prevForm,
+            bemerkung: event.target.value,
+        }));
+    };
+
+    const handleChangeEinverstanden= (event: React.ChangeEvent<HTMLInputElement>) => {
+        setForm(prevForm => ({
+            ...prevForm,
+            checked: event.target.checked,
+        }));
+    };
+
+    const handleProgrammeChange = (e: React.ChangeEvent<HTMLInputElement>, id: number) => {
+        const newPrograms = e.target.checked
+            ? [...form.programs, id]
+            : form.programs.filter(item => item !== id);
+
+        console.log(id);
+        console.log(newPrograms);
+
         setForm(prev => ({
             ...prev,
-            programme: checked
-                ? [...prev.programme, value]
-                : prev.programme.filter(item => item !== value),
+            programs: newPrograms,
         }));
     };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         setSubmitted(true);
-        // Hier könntest du die Daten z.B. an eine API senden
-        // await fetch("/api/programmbuchung", { method: "POST", body: JSON.stringify(form) });
     };
 
 
@@ -72,7 +118,7 @@ export default function AnmeldungPage() {
                     label="Name Teilnehmer/Eltern"
                     name="buchender"
                     value={form.buchender}
-                    onChange={handleChange}
+                    onChange={handleChangeBuchender}
                     fullWidth required margin="normal"
                 />
                 <TextField
@@ -80,30 +126,27 @@ export default function AnmeldungPage() {
                     name="email"
                     type="email"
                     value={form.email}
-                    onChange={handleChange}
+                    onChange={handleChangeEmail}
                     fullWidth required margin="normal"
                 />
                 <TextField
-                    label="Name des Kindes / der Kinder"
-                    name="kinder"
+                    label="Name des Kindes"
+                    name="kind"
                     value={form.kinder}
-                    onChange={handleChange}
+                    onChange={handleChangeKind}
                     fullWidth margin="normal"
                 />
 
                 <FormLabel sx={{ mt: 2, mb: 1 }}>Programme auswählen</FormLabel>
                 <FormGroup>
-                    {programme.map(prg => (
+                    {programs.map(prg => (
                         <FormControlLabel
-                            key={prg.value}
+                            key={prg.id}
                             control={
-                                <Checkbox
-                                    value={prg.value}
-                                    checked={form.programme.includes(prg.value)}
-                                    onChange={handleProgrammeChange}
+                                <Checkbox onChange={e => handleProgrammeChange(e, prg.id)}
                                 />
                             }
-                            label={prg.label}
+                            label={`${prg.titel}: ${prg.beschreibung} (${prg.datum} um ${prg.startzeit})`}
                         />
                     ))}
                 </FormGroup>
@@ -112,7 +155,7 @@ export default function AnmeldungPage() {
                     label="Bemerkungen (optional)"
                     name="bemerkung"
                     value={form.bemerkung}
-                    onChange={handleChange}
+                    onChange={handleChangeBemerkung}
                     fullWidth
                     multiline
                     minRows={2}
@@ -123,8 +166,8 @@ export default function AnmeldungPage() {
                     control={
                         <Checkbox
                             name="einverstanden"
-                            checked={form.einverstanden}
-                            onChange={handleChange}
+                            checked={form.checked}
+                            onChange={handleChangeEinverstanden}
                             required
                         />
                     }
@@ -139,6 +182,7 @@ export default function AnmeldungPage() {
                     fullWidth
                     size="large"
                     sx={{ mt: 2 }}
+                    disabled={ !form.checked || !form.buchender || !form.email || form.programs.length === 0 }
                 >
                     Jetzt buchen
                 </Button>
