@@ -140,7 +140,9 @@ export default function AnmeldungPage() {
                         <FormControlLabel
                             key={prg.id}
                             control={
-                                <Checkbox onChange={e => handleProgrammeChange(e, prg.id)}
+                                <Checkbox
+                                    sx={{ color: 'black' }}
+                                    onChange={e => handleProgrammeChange(e, prg.id)}
                                 />
                             }
                             color={"black"}
