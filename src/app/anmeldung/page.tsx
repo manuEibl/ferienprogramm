@@ -134,7 +134,7 @@ export default function AnmeldungPage() {
                     fullWidth margin="normal"
                 />
 
-                <FormLabel sx={{ mt: 2, mb: 1 }}>Programme auswählen</FormLabel>
+                <FormLabel sx={{ mt: 2, mb: 1, color: 'black' }}>Programme auswählen</FormLabel>
                 <FormGroup>
                     {programs.map(prg => (
                         <FormControlLabel
