@@ -104,7 +104,7 @@ export default function AnmeldungPage() {
                 component="form"
                 onSubmit={handleSubmit}
                 sx={{
-                    maxWidth: 480, mx: 'auto', my: 6, p: 3, background: '#f5f8ff',
+                    maxWidth: 480, mx: 'auto', p: 3, background: '#f5f8ff',
                     borderRadius: 2, boxShadow: 3
                 }}
             >
@@ -143,6 +143,7 @@ export default function AnmeldungPage() {
                                 <Checkbox onChange={e => handleProgrammeChange(e, prg.id)}
                                 />
                             }
+                            color={"black"}
                             label={`${prg.titel}: ${prg.beschreibung} (${prg.datum} um ${prg.startzeit})`}
                         />
                     ))}
@@ -168,9 +169,8 @@ export default function AnmeldungPage() {
                             required
                         />
                     }
-                    color="black"
                     label="Ich bin mit der Datenverarbeitung für die Programmbuchung einverstanden."
-                    sx={{ mt: 1, alignItems: 'flex-start' }}
+                    sx={{ mt: 1, alignItems: 'flex-start', color: 'black' }}
                 />
 
                 <Button
