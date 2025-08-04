@@ -75,7 +75,7 @@ export default function StartPage() {
                 </Stack>
 
                 <Alert severity="warning" sx={{ mb: 3, textAlign: "left" }}>
-                    <b>Wichtig:</b> Bitte beachtet unsere 2025 angepassten Veranstaltungshinweise<br />
+                    <b>Wichtig:</b> Bitte beachtet unsere 2025 angepassten Veranstaltungshinweise
                     & neue Rückerstattungsmodalitäten!
                 </Alert>
 
