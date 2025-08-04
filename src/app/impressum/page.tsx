@@ -4,7 +4,7 @@ export default function KontaktPage() {
 
     return (
         <div>
-            <Box sx={{ maxWidth: 700, mx: "auto", my: 6, p: { xs: 2, md: 4 }, background: "#f8f9fb", borderRadius: 2 }}>
+            <Box sx={{ maxWidth: 700, mx: "auto", p: { xs: 2, md: 4 }, background: "#f8f9fb", borderRadius: 2 }}>
                 <Typography variant="h4" component="h1" gutterBottom>
                     Impressum
                 </Typography>

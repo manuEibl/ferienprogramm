@@ -27,7 +27,7 @@ export function Navbar() {
 
     return (
         <>
-            <AppBar position="static" style={{ backgroundColor: 'grey' }}>
+            <AppBar position="static" style={{ backgroundColor: 'grey', boxShadow: 'none' }}>
                 <Toolbar>
                     <IconButton
                         size="large"
