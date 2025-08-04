@@ -108,7 +108,7 @@ export default function AnmeldungPage() {
                     borderRadius: 2, boxShadow: 3
                 }}
             >
-                <Typography variant="h5" mb={2} textAlign="center">
+                <Typography color="black" variant="h5" mb={2} textAlign="center">
                     Programmbuchung Ferienprogramm
                 </Typography>
                 <TextField
@@ -168,6 +168,7 @@ export default function AnmeldungPage() {
                             required
                         />
                     }
+                    color="black"
                     label="Ich bin mit der Datenverarbeitung für die Programmbuchung einverstanden."
                     sx={{ mt: 1, alignItems: 'flex-start' }}
                 />
