@@ -141,11 +141,10 @@ export default function AnmeldungPage() {
                             key={prg.id}
                             control={
                                 <Checkbox
-                                    sx={{ color: 'black' }}
                                     onChange={e => handleProgrammeChange(e, prg.id)}
                                 />
                             }
-                            color={"black"}
+                            sx={{ color: 'black' }}
                             label={`${prg.titel}: ${prg.beschreibung} (${prg.datum} um ${prg.startzeit})`}
                         />
                     ))}
