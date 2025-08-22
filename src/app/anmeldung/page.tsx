@@ -13,7 +13,7 @@ export default function AnmeldungPage() {
     const [form, setForm] = useState({
         buchender: '',
         email: '',
-        kinder: '',
+        kind: '',
         programs: [] as number[],
         bemerkung: '',
         checked: false,
@@ -22,12 +22,12 @@ export default function AnmeldungPage() {
     interface Program {
         id: number;
         titel: string;
-        beschreibung?: string | null;
+        beschreibung: string;
         datum: string;
         startzeit?: string | null;
         endzeit?: string | null;
         ort?: string | null;
-        plaetze?: number | null;
+        plaetze: number;
     }
 
     useEffect(() => {
@@ -62,7 +62,7 @@ export default function AnmeldungPage() {
     const handleChangeKind= (event: React.ChangeEvent<HTMLInputElement>) => {
         setForm(prevForm => ({
             ...prevForm,
-            kinder: event.target.value,
+            kind: event.target.value,
         }));
     };
 
@@ -91,9 +91,26 @@ export default function AnmeldungPage() {
         }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setSubmitted(true);
+
+        const anmeldungen = form.programs.map((programId) => {
+            const program = programs.find(p => p.id === programId);
+
+            if (program === undefined) {
+                console.log("Kein Programm mit dieser ID gefunden");
+            } else {
+                return { buchender: form.buchender, email: form.email, teilnehmer_kind: form.kind,
+                         programmkurs: program.titel, bemerkung: program.beschreibung };
+            }
+        })
+
+        const { error } = await supabase
+            .from('anmeldungen')
+            .insert(anmeldungen);
+
+        console.log(error);
     };
 
 
@@ -129,7 +146,7 @@ export default function AnmeldungPage() {
                 <TextField
                     label="Name des Kindes"
                     name="kind"
-                    value={form.kinder}
+                    value={form.kind}
                     onChange={handleChangeKind}
                     fullWidth margin="normal"
                 />
